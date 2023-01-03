@@ -1,18 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/get.dart';
 import 'package:thanawat_filter/models/case_model.dart';
 
 class CaseController extends GetxController {
   var items = <CaseIphone>[].obs;
+  TextEditingController searchController = TextEditingController();
+  List<CaseIphone> display_list = [];
 
   @override
   void onInit() {
-    fetchProducts();
     super.onInit();
+    fetchProducts();
+    display_list = items;
   }
 
   void fetchProducts() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     var itemResult = [
       CaseIphone(
           id: 1,
@@ -21,15 +25,15 @@ class CaseController extends GetxController {
           brand: 'Case-Mate',
           color: 'Pearl ',
           price: 2190,
-          version: 'IPhone 14'),
+          version: 'iPhone 14'),
       CaseIphone(
           id: 2,
-          image: 'assets/images/case_images/A1.jpg',
-          title: '2',
-          brand: '2',
-          color: '2 ',
-          price: 2190,
-          version: 'IPhone 14'),
+          image: 'assets/images/case_images/A2.jpg',
+          title: 'Punk Rose Pink',
+          brand: 'Coach',
+          color: 'Rose Pink ',
+          price: 1690,
+          version: 'iPhone 14 Pro Max'),
       CaseIphone(
           id: 3,
           image: 'assets/images/case_images/A1.jpg',
@@ -71,7 +75,6 @@ class CaseController extends GetxController {
           price: 2190,
           version: 'IPhone 14'),
     ];
-
     items.assignAll(itemResult);
   }
 }

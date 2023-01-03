@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Thanawat Filter',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.blue,
         fontFamily: 'Playfair Display',
       ),
       home: HomePage(),
