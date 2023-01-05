@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thanawat_filter/controller/cart_controller.dart';
@@ -15,25 +17,18 @@ class _HomePageState extends State<HomePage> {
 
   final cartController = Get.put(CartController());
 
-  void updateList(String keyword) {
-    setState(() {
-      caseController.display_list = caseController.items
-          .where((element) =>
-              (element.title).toLowerCase().contains(keyword.toLowerCase()))
-          .toList();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('Thanawat Filter'),
+        title: const Text('iPhone Case Shop'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.filter_list_alt),
-            onPressed: (() {}),
+            onPressed: (() {
+              Get.toNamed('/filter');
+            }),
           ),
         ],
         bottom: PreferredSize(
@@ -49,7 +44,9 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.white),
                   child: TextFormField(
                     controller: caseController.searchController,
-                    onFieldSubmitted: (value) => updateList(value),
+                    onChanged: (value) => setState(() {
+                      caseController.updateList(value);
+                    }),
                     decoration: const InputDecoration(
                       labelText: 'Search',
                       suffixIcon: Icon(Icons.search),
@@ -68,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               child: GetX<CaseController>(
                 builder: (controller) {
                   return ListView.builder(
-                    itemCount: controller.display_list.length,
+                    itemCount: controller.displaylist.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
                         margin: const EdgeInsets.all(12),
@@ -78,11 +75,8 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Center(
-                                child: Image.asset(
-                                  controller.display_list[index].image,
-                                  scale: 5,
-                                ),
-                              ),
+                                  child: Image.network(
+                                      controller.displaylist[index].image)),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -92,26 +86,27 @@ class _HomePageState extends State<HomePage> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        caseController
-                                            .display_list[index].title,
+                                        caseController.displaylist[index].title,
                                         style: const TextStyle(fontSize: 20),
                                       ),
                                       Text(
-                                        caseController
-                                            .display_list[index].brand,
-                                      )
+                                        'Brand: ${caseController.displaylist[index].brand}',
+                                      ),
+                                      Text(
+                                        'For: ${caseController.displaylist[index].version}',
+                                      ),
                                     ],
                                   ),
                                   Text(
-                                    '${caseController.display_list[index].price} ฿',
+                                    '${caseController.displaylist[index].price} ฿',
                                     style: const TextStyle(fontSize: 24),
                                   ),
                                 ],
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  cartController.addToCard(
-                                      controller.display_list[index]);
+                                  cartController
+                                      .addToCard(controller.displaylist[index]);
                                 },
                                 child: const Text('Add to Cart'),
                               )
@@ -124,17 +119,17 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-            GetX<CartController>(
-              builder: (controller) {
-                return Text(
-                  'Total amount: ${controller.totalPrice} ฿',
-                  style: const TextStyle(fontSize: 30, color: Colors.white),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 100,
-            )
+            // GetX<CartController>(
+            //   builder: (controller) {
+            //     return Text(
+            //       'Total amount: ${controller.totalPrice} ฿',
+            //       style: const TextStyle(fontSize: 30, color: Colors.white),
+            //     );
+            //   },
+            // ),
+            // const SizedBox(
+            //   height: 100,
+            // )
           ],
         ),
       ),
