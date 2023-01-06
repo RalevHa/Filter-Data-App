@@ -12,12 +12,15 @@ class CaseController extends GetxController {
   @override
   onInit() {
     // fetchProducts();
-    items.bindStream(FirestoreDB().getCaseProduct());
-    displaylist = items;
     super.onInit();
+    getData();
   }
 
-  bool select = false;
+  getData() async {
+    items.bindStream(FirestoreDB().getCaseProduct());
+    displaylist = items;
+  }
+
   int selectCategory = 0;
 
   onCategories() {
@@ -25,6 +28,7 @@ class CaseController extends GetxController {
       case 0:
         {
           displaylist = items;
+          items.refresh();
         }
         break;
       case 1:
@@ -32,6 +36,7 @@ class CaseController extends GetxController {
           displaylist = items
               .where((element) => (element.brand).contains('Case-Mate'))
               .toList();
+          items.refresh();
         }
         break;
       case 2:
@@ -39,6 +44,7 @@ class CaseController extends GetxController {
           displaylist = items
               .where((element) => (element.brand).contains('Coach'))
               .toList();
+          items.refresh();
         }
         break;
       case 3:
@@ -46,6 +52,8 @@ class CaseController extends GetxController {
           displaylist = items
               .where((element) => (element.brand).contains('UAG'))
               .toList();
+
+          items.refresh();
         }
         break;
       default:
@@ -59,6 +67,7 @@ class CaseController extends GetxController {
       case 0:
         {
           displaylist = items;
+          items.refresh();
         }
         break;
       case 1:
@@ -66,6 +75,7 @@ class CaseController extends GetxController {
           displaylist = items
               .where((element) => (element.color).contains('Pink'))
               .toList();
+          items.refresh();
         }
         break;
       case 2:
@@ -73,6 +83,7 @@ class CaseController extends GetxController {
           displaylist = items
               .where((element) => (element.color).contains('White'))
               .toList();
+          items.refresh();
         }
         break;
       case 3:
@@ -80,6 +91,7 @@ class CaseController extends GetxController {
           displaylist = items
               .where((element) => (element.color).contains('Black'))
               .toList();
+          items.refresh();
         }
         break;
       default:

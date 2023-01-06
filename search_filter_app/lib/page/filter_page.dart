@@ -39,27 +39,29 @@ class _FilterPageState extends State<FilterPage> {
       )),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Brand',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5!
-                  .copyWith(color: Theme.of(context).colorScheme.secondary),
-            ),
-            CustomBrandFilter(brands: BrandModel.brands),
-            Text(
-              'Color',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5!
-                  .copyWith(color: Theme.of(context).colorScheme.secondary),
-            ),
-            CustomColorFilter(colors: ColorModel.colors),
-          ],
-        ),
+        child: GetBuilder<CaseController>(builder: (controller) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Brand',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(color: Theme.of(context).colorScheme.secondary),
+              ),
+              CustomBrandFilter(brands: BrandModel.brands),
+              Text(
+                'Color',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(color: Theme.of(context).colorScheme.secondary),
+              ),
+              CustomColorFilter(colors: ColorModel.colors),
+            ],
+          );
+        }),
       ),
     );
   }
