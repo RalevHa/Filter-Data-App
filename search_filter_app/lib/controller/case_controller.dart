@@ -21,80 +21,459 @@ class CaseController extends GetxController {
     displaylist = items;
   }
 
-  int selectCategory = 0;
+  int selectBrands = 0;
+  int selectColor = 0;
+  int selectVersion = 0;
 
   onCategories() {
-    switch (selectCategory) {
-      case 0:
-        {
-          displaylist = items;
-          items.refresh();
-        }
-        break;
-      case 1:
-        {
-          displaylist = items
-              .where((element) => (element.brand).contains('Case-Mate'))
-              .toList();
-          items.refresh();
-        }
-        break;
-      case 2:
-        {
-          displaylist = items
-              .where((element) => (element.brand).contains('Coach'))
-              .toList();
-          items.refresh();
-        }
-        break;
-      case 3:
-        {
-          displaylist = items
-              .where((element) => (element.brand).contains('UAG'))
-              .toList();
-
-          items.refresh();
-        }
-        break;
-      default:
-    }
-  }
-
-  int selectColor = 0;
-
-  onColor() {
-    switch (selectColor) {
-      case 0:
-        {
-          displaylist = items;
-          items.refresh();
-        }
-        break;
-      case 1:
-        {
-          displaylist = items
-              .where((element) => (element.color).contains('Pink'))
-              .toList();
-          items.refresh();
-        }
-        break;
-      case 2:
-        {
-          displaylist = items
-              .where((element) => (element.color).contains('White'))
-              .toList();
-          items.refresh();
-        }
-        break;
-      case 3:
-        {
-          displaylist = items
-              .where((element) => (element.color).contains('Black'))
-              .toList();
-          items.refresh();
-        }
-        break;
-      default:
+    if (selectBrands == 0 && selectColor == 0 && selectVersion == 0) {
+      displaylist = items;
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 0 && selectVersion == 0) {
+      displaylist = items
+          .where((element) => (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 0 && selectVersion == 0) {
+      displaylist =
+          items.where((element) => (element.brand).contains('Coach')).toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 0 && selectVersion == 0) {
+      displaylist =
+          items.where((element) => (element.brand).contains('UAG')).toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 1 && selectVersion == 0) {
+      displaylist =
+          items.where((element) => (element.color).contains('Pink')).toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 2 && selectVersion == 0) {
+      displaylist =
+          items.where((element) => (element.color).contains('White')).toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 3 && selectVersion == 0) {
+      displaylist =
+          items.where((element) => (element.color).contains('Black')).toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 1 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('Case-Mate') &&
+              (element.color).contains('Pink'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 2 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('Case-Mate') &&
+              (element.color).contains('White'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 3 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('Case-Mate') &&
+              (element.color).contains('Black'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 1 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('Coach') &&
+              (element.color).contains('Pink'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 2 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('Coach') &&
+              (element.color).contains('White'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 3 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('Coach') &&
+              (element.color).contains('Black'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 1 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('UAG') &&
+              (element.color).contains('Pink'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 2 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('UAG') &&
+              (element.color).contains('White'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 3 && selectVersion == 0) {
+      displaylist = items
+          .where((element) =>
+              (element.brand).contains('UAG') &&
+              (element.color).contains('Black'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 0 && selectVersion == 1) {
+      displaylist = items
+          .where((element) => (element.version).endsWith('iPhone 14'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 0 && selectVersion == 2) {
+      displaylist = items
+          .where((element) => (element.version).endsWith('iPhone 14 Pro'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 0 && selectVersion == 3) {
+      displaylist = items
+          .where((element) => (element.version).endsWith('iPhone 14 Pro Max'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 0 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 0 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 0 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 0 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 0 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 0 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 0 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 0 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 0 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 1 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Pink'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 2 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('White'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 3 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Black'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 1 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Pink'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 2 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('White'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 3 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Black'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 1 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Pink'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 2 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('White'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 0 && selectColor == 3 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Black'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 1 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 1 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 1 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 2 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 3 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 2 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 3 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 2 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 3 && selectVersion == 1) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 1 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 1 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 1 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 1 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 1 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 1 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Pink') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 2 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 3 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('Case-Mate'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 2 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 3 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 2 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 3 && selectVersion == 2) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 2 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 1 && selectColor == 3 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 2 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 2 && selectColor == 3 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('Coach'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 2 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('White') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
+    } else if (selectBrands == 3 && selectColor == 3 && selectVersion == 3) {
+      displaylist = items
+          .where((element) =>
+              (element.version).endsWith('iPhone 14 Pro Max') &&
+              (element.color).contains('Black') &&
+              (element.brand).contains('UAG'))
+          .toList();
+      items.refresh();
     }
   }
 
@@ -104,67 +483,4 @@ class CaseController extends GetxController {
             (element.title).toLowerCase().contains(keyword.toLowerCase()))
         .toList();
   }
-
-//   void fetchProducts() async {
-//     await Future.delayed(const Duration(seconds: 1));
-//     var itemResult = [
-//       CaseIphone(
-//           id: 1,
-//           image: 'assets/images/case_images/A1.jpg',
-//           title: 'Karat A Touch of Pearl',
-//           brand: 'Case-Mate',
-//           color: 'Pearl ',
-//           price: 2190,
-//           version: 'iPhone 14'),
-//       CaseIphone(
-//           id: 2,
-//           image: 'assets/images/case_images/A2.jpg',
-//           title: 'Punk Rose Pink',
-//           brand: 'Coach',
-//           color: 'Rose Pink ',
-//           price: 1690,
-//           version: 'iPhone 14 Pro Max'),
-//       CaseIphone(
-//           id: 3,
-//           image: 'assets/images/case_images/A1.jpg',
-//           title: '3',
-//           brand: '3',
-//           color: '3 ',
-//           price: 2190,
-//           version: 'IPhone 14'),
-//       CaseIphone(
-//           id: 4,
-//           image: 'assets/images/case_images/A1.jpg',
-//           title: '4',
-//           brand: '4',
-//           color: '4 ',
-//           price: 2190,
-//           version: 'IPhone 14'),
-//       CaseIphone(
-//           id: 5,
-//           image: 'assets/images/case_images/A1.jpg',
-//           title: '5',
-//           brand: '5',
-//           color: '5 ',
-//           price: 2190,
-//           version: 'IPhone 14'),
-//       CaseIphone(
-//           id: 6,
-//           image: 'assets/images/case_images/A1.jpg',
-//           title: '6',
-//           brand: '6',
-//           color: '6 ',
-//           price: 2190,
-//           version: 'IPhone 14'),
-//       CaseIphone(
-//           id: 7,
-//           image: 'assets/images/case_images/A1.jpg',
-//           title: '7',
-//           brand: '7',
-//           color: '7 ',
-//           price: 2190,
-//           version: 'IPhone 14'),
-//     ];
-//     items.assignAll(itemResult);
-//   }
 }

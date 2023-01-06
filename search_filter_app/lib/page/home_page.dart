@@ -25,6 +25,12 @@ class _HomePageState extends State<HomePage> {
         title: const Text('iPhone Case Shop'),
         actions: <Widget>[
           IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: (() {
+              // Get.toNamed('/filter');
+            }),
+          ),
+          IconButton(
             icon: const Icon(Icons.filter_list_alt),
             onPressed: (() {
               Get.toNamed('/filter');
@@ -65,6 +71,7 @@ class _HomePageState extends State<HomePage> {
               child: GetX<CaseController>(
                 builder: (controller) {
                   return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: controller.displaylist.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
@@ -133,18 +140,27 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
         label: GetX<CartController>(
           builder: (controller) {
-            return Text(
-              controller.count.toString(),
-              style: const TextStyle(fontSize: 26, color: Colors.white),
+            return Row(
+              children: <Widget>[
+                Text(
+                  '${controller.totalPrice} ฿ | ',
+                  style: const TextStyle(fontSize: 24, color: Colors.white),
+                ),
+                Text(
+                  controller.count.toString(),
+                  style: const TextStyle(fontSize: 24, color: Colors.white),
+                ),
+              ],
             );
           },
         ),
         icon: const Icon(
-          Icons.add_shopping_cart_outlined,
+          Icons.shopping_basket,
           color: Colors.white,
         ),
       ),
