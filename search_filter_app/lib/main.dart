@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'Playfair Display',
+        fontFamily: 'Kanit',
       ),
       home: HomePage(),
       getPages: Routes.routes,

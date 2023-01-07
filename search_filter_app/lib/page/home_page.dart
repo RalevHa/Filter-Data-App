@@ -22,7 +22,20 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
         title: const Text('iPhone Case Shop'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: <Color>[
+                  Colors.blue,
+                  Colors.deepPurple,
+                ]),
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.add),
@@ -51,11 +64,25 @@ class _HomePageState extends State<HomePage> {
                   child: TextFormField(
                     controller: caseController.searchController,
                     onChanged: (value) => setState(() {
-                      caseController.updateList(value);
+                      caseController.getKeyword = value;
+                      caseController.onSelectCate(value);
                     }),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Search',
-                      suffixIcon: Icon(Icons.search),
+                      prefixIcon: const Icon(
+                        Icons.search,
+                      ),
+                      suffixIcon:
+                          caseController.searchController.text.isNotEmpty
+                              ? IconButton(
+                                  onPressed: () => setState(() {
+                                        caseController.searchController.clear();
+                                        caseController.getKeyword = '';
+                                        caseController.onSelectCate(
+                                            caseController.getKeyword);
+                                      }),
+                                  icon: const Icon(Icons.clear))
+                              : null,
                     ),
                   ),
                 ),
@@ -64,80 +91,89 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: GetX<CaseController>(
-                builder: (controller) {
-                  return ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: controller.displaylist.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        margin: const EdgeInsets.all(12),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              Center(
-                                  child: Image.network(
-                                      controller.displaylist[index].image)),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        caseController.displaylist[index].title,
-                                        style: const TextStyle(fontSize: 20),
-                                      ),
-                                      Text(
-                                        'Brand: ${caseController.displaylist[index].brand}',
-                                      ),
-                                      Text(
-                                        'For: ${caseController.displaylist[index].version}',
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    '${caseController.displaylist[index].price} ฿',
-                                    style: const TextStyle(fontSize: 24),
-                                  ),
-                                ],
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  cartController
-                                      .addToCard(controller.displaylist[index]);
-                                },
-                                child: const Text('Add to Cart'),
-                              )
-                            ],
+      body: GradientBackground(
+        gradient: const LinearGradient(
+          colors: [Colors.blueAccent, Colors.deepPurple],
+        ),
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: GetX<CaseController>(
+                  builder: (controller) {
+                    return ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: controller.displaylist.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          margin: const EdgeInsets.all(12),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: <Widget>[
+                                Center(
+                                    child: Image.network(
+                                        controller.displaylist[index].image)),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          caseController
+                                              .displaylist[index].title,
+                                          style: const TextStyle(fontSize: 20),
+                                        ),
+                                        Text(
+                                          'Brand: ${caseController.displaylist[index].brand}',
+                                        ),
+                                        Text(
+                                          'For: ${caseController.displaylist[index].version}',
+                                        ),
+                                        Text(
+                                          'Color: ${caseController.displaylist[index].color}',
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      '${caseController.displaylist[index].price} ฿',
+                                      style: const TextStyle(fontSize: 24),
+                                    ),
+                                  ],
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    cartController.addToCard(
+                                        controller.displaylist[index]);
+                                  },
+                                  child: const Text('Add to Cart'),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  );
-                },
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-            // GetX<CartController>(
-            //   builder: (controller) {
-            //     return Text(
-            //       'Total amount: ${controller.totalPrice} ฿',
-            //       style: const TextStyle(fontSize: 30, color: Colors.white),
-            //     );
-            //   },
-            // ),
-            // const SizedBox(
-            //   height: 100,
-            // )
-          ],
+              // GetX<CartController>(
+              //   builder: (controller) {
+              //     return Text(
+              //       'Total amount: ${controller.totalPrice} ฿',
+              //       style: const TextStyle(fontSize: 30, color: Colors.white),
+              //     );
+              //   },
+              // ),
+              // const SizedBox(
+              //   height: 100,
+              // )
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -164,6 +200,27 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
         ),
       ),
+    );
+  }
+}
+
+class GradientBackground extends StatelessWidget {
+  GradientBackground({key, required this.gradient, required this.child})
+      : super(key: key);
+  final Gradient gradient;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient: gradient,
+          ),
+        ),
+        child,
+      ],
     );
   }
 }

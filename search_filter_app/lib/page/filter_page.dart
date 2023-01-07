@@ -28,6 +28,17 @@ class _FilterPageState extends State<FilterPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Filter'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: <Color>[
+                  Colors.blue,
+                  Colors.deepPurple,
+                ]),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
           child: Row(
@@ -36,7 +47,7 @@ class _FilterPageState extends State<FilterPage> {
           ElevatedButton(
               onPressed: () {
                 Get.back();
-                caseController.onCategories();
+                caseController.onSelectCate(caseController.getKeyword);
               },
               child: const Text('Apply'))
         ],
