@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: (() {
-              // Get.toNamed('/filter');
+              Get.toNamed('/add');
             }),
           ),
           IconButton(

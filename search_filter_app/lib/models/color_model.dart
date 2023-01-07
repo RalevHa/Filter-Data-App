@@ -15,7 +15,7 @@ class ColorModel extends Equatable {
   static List<ColorModel> colors = [
     ColorModel(
       id: 1,
-      color: 'Pink',
+      color: 'Colorful',
     ),
     ColorModel(
       id: 2,

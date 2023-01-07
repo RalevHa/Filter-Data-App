@@ -19,7 +19,7 @@ class BrandModel extends Equatable {
     ),
     BrandModel(
       id: 2,
-      brand: 'Coach',
+      brand: 'Otterbox',
     ),
     BrandModel(
       id: 3,
