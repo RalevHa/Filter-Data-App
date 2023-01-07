@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:thanawat_filter/controller/cart_controller.dart';
 import 'package:thanawat_filter/controller/case_controller.dart';
 
@@ -19,6 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -113,8 +116,38 @@ class _HomePageState extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
                                 Center(
-                                    child: Image.network(
-                                        controller.displaylist[index].image)),
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        caseController.displaylist[index].image,
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            Shimmer.fromColors(
+                                      highlightColor: Colors.white,
+                                      baseColor: Colors.grey.shade300,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5.0)),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10.0)),
+                                          child: AspectRatio(
+                                            aspectRatio: 1 / 1,
+                                            child: Container(
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -123,19 +156,32 @@ class _HomePageState extends State<HomePage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text(
-                                          caseController
-                                              .displaylist[index].title,
-                                          style: const TextStyle(fontSize: 20),
+                                        SizedBox(
+                                          width: size.width * 0.6,
+                                          child: Text(
+                                            caseController
+                                                .displaylist[index].title,
+                                            style:
+                                                const TextStyle(fontSize: 20),
+                                          ),
                                         ),
-                                        Text(
-                                          'Brand: ${caseController.displaylist[index].brand}',
+                                        SizedBox(
+                                          width: size.width * 0.6,
+                                          child: Text(
+                                            'Brand: ${caseController.displaylist[index].brand}',
+                                          ),
                                         ),
-                                        Text(
-                                          'For: ${caseController.displaylist[index].version}',
+                                        SizedBox(
+                                          width: size.width * 0.6,
+                                          child: Text(
+                                            'For: ${caseController.displaylist[index].version}',
+                                          ),
                                         ),
-                                        Text(
-                                          'Color: ${caseController.displaylist[index].color}',
+                                        SizedBox(
+                                          width: size.width * 0.6,
+                                          child: Text(
+                                            'Color: ${caseController.displaylist[index].color}',
+                                          ),
                                         ),
                                       ],
                                     ),

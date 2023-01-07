@@ -7,7 +7,7 @@ class FirestoreDB {
   Stream<List<CaseIphone>> getCaseProduct() {
     return _firebaseFirestore
         .collection('CaseProduct')
-        .orderBy('id', descending: false)
+        // .orderBy('id', descending: false)
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) => CaseIphone.fromSnapshot(doc)).toList();

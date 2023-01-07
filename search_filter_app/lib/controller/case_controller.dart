@@ -14,6 +14,7 @@ class CaseController extends GetxController {
     // fetchProducts();
     super.onInit();
     getData();
+    getKeyword = '';
   }
 
   getData() async {
