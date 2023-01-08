@@ -1076,7 +1076,7 @@ class CaseController extends GetxController {
         'version': version,
         'image': pathImage,
       }).then((value) {
-        Get.snackbar('Upload', 'Upload Successful');
+        // Get.snackbar('Upload', 'Upload Successful');
         titleController.clear();
         brandController.clear();
         colorController.clear();

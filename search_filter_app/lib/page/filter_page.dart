@@ -114,7 +114,7 @@ class _CustomBrandFilterState extends State<CustomBrandFilter> {
           margin: const EdgeInsets.only(top: 10),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(5),
           ),
           child: Row(
@@ -172,7 +172,7 @@ class _CustomColorFilterState extends State<CustomColorFilter> {
           margin: const EdgeInsets.only(top: 10),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(5),
           ),
           child: Row(
@@ -230,7 +230,7 @@ class _CustomVersionFilterState extends State<CustomVersionFilter> {
           margin: const EdgeInsets.only(top: 10),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(5),
           ),
           child: Row(

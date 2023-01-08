@@ -67,7 +67,7 @@ class _AddPageState extends State<AddPage> {
                 Container(
                   width: size.width,
                   height: size.height,
-                  color: Colors.white,
+                  color: Colors.transparent,
                   child: Column(
                     children: [
                       const Text(
