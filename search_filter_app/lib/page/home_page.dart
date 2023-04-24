@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                 child: GetX<CaseController>(
                   builder: (controller) {
                     return Text(
-                      'ขณะสินค้าแสดงผลอยู่ ${caseController.displaylist.length} รายการ',
+                      'ขณะนี้สินค้าแสดงผลอยู่ ${caseController.displaylist.length} รายการ',
                       style: const TextStyle(fontSize: 18),
                     );
                   },
